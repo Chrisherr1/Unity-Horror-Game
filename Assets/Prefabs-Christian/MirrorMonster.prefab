@@ -1772,6 +1772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3490026887102541896}
   - component: {fileID: 3490026887111630760}
+  - component: {fileID: 4225143669526664175}
   m_Layer: 0
   m_Name: MirrorMonster
   m_TagString: Monster
@@ -1819,6 +1820,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4225143669526664175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3490026887102114920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4d99b166154477f8835418bf796095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterAI
+  player: {fileID: 0}
+  detectionRange: 15
+  losePlayerRange: 20
+  endChaseDelay: 3
 --- !u!1 &3490026887102114922
 GameObject:
   m_ObjectHideFlags: 0
