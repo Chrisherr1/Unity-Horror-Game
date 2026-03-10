@@ -23,11 +23,11 @@ public class Jump : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    void LateUpdate()
+    void Update()
     {
         if (Input.GetButtonDown("Jump") && (!groundCheck || groundCheck.isGrounded))
         {
-            rigidbody.AddForce(Vector3.up * 100 * jumpStrength);
+            rigidbody.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
             
             // Trigger jump animation
             if (animator != null)
