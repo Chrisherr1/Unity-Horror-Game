@@ -9,8 +9,6 @@ public class PlayerJump : MonoBehaviour
     [SerializeField, Tooltip("Prevents jumping when the transform is in mid-air.")]
     PlayerGroundCheck groundCheck;
 
-    private Animator animator;
-
     void Reset()
     {
         groundCheck = GetComponentInChildren<PlayerGroundCheck>();
@@ -19,7 +17,8 @@ public class PlayerJump : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
+        if (groundCheck == null)
+            groundCheck = GetComponentInChildren<PlayerGroundCheck>();
     }
 
     void Update()
@@ -32,7 +31,6 @@ public class PlayerJump : MonoBehaviour
 
             rigidbody.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
 
-            if (animator != null) animator.SetTrigger("Jump");
             Jumped?.Invoke();
         }
     }
