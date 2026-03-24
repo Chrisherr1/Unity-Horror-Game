@@ -113,7 +113,7 @@
 *.pdb lfs-file
 *.so lfs-file
 # Packaging
-*.zip lfs-file
+*.zip filter=lfs diff=lfs merge=lfs -text
 *.7z lfs-file
 *.gz lfs-file
 *.rar lfs-file
