@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6141cf76ca7474d349a00a0cdd394816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorBridge
-  animator: {fileID: 0}
+  animator: {fileID: 2333246135476635897}
   rb: {fileID: 266624617366247449}
   groundCheck: {fileID: 0}
   playerJump: {fileID: 0}
