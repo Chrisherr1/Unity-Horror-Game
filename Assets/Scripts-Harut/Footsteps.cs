@@ -4,11 +4,23 @@ public class Footsteps : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip[] footstepClips;
-    public float volume = 1f;
 
-    public void PlayFootstep()
+    public float walkVolume = 0.5f;
+    public float runVolume = 2f;
+
+    public void PlayFootstepWalk()
     {
-        if (audioSource == null || footstepClips == null || footstepClips.Length == 0)
+        PlayFootstep(walkVolume);
+    }
+
+    public void PlayFootstepRun()
+    {
+        PlayFootstep(runVolume);
+    }
+
+    void PlayFootstep(float volume)
+    {
+        if (audioSource == null || footstepClips.Length == 0)
             return;
 
         AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
