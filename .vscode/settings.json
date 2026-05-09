@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "UnityHorrorGame.slnx"
+    "dotnet.defaultSolution": "Unity-Horror-Game.slnx"
 }
