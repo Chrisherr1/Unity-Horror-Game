@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class SmartDoor : MonoBehaviour
 {
-    [Header("Setup")]
-    public Transform player;
+    [Header("Settings")]
     public float openAngle = 90f;
     public float openSpeed = 4f;
 
     [Header("State")]
     public bool isOpen = false;
+
     private bool playerNearby = false;
+    private Transform player;
 
     private Quaternion closedRotation;
     private Quaternion targetRotation;
@@ -24,14 +25,10 @@ public class SmartDoor : MonoBehaviour
     {
         if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            if (!isOpen)
-            {
-                OpenAwayFromPlayer();
-            }
-            else
-            {
+            if (isOpen)
                 CloseDoor();
-            }
+            else
+                OpenAwayFrom(player);
         }
 
         transform.localRotation = Quaternion.Slerp(
@@ -41,18 +38,20 @@ public class SmartDoor : MonoBehaviour
         );
     }
 
-    void OpenAwayFromPlayer()
+    public void OpenAwayFrom(Transform opener)
     {
-        Vector3 localPlayerPos = transform.InverseTransformPoint(player.position);
+        if (opener == null)
+            return;
 
-        // If player is on one side, open opposite
-        float direction = (localPlayerPos.x >= 0f) ? -1f : 1f;
+        Vector3 localOpenerPos = transform.InverseTransformPoint(opener.position);
+
+        float direction = localOpenerPos.x >= 0f ? -1f : 1f;
 
         targetRotation = closedRotation * Quaternion.Euler(0f, openAngle * direction, 0f);
         isOpen = true;
     }
 
-    void CloseDoor()
+    public void CloseDoor()
     {
         targetRotation = closedRotation;
         isOpen = false;
@@ -63,17 +62,13 @@ public class SmartDoor : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = true;
-
-            if (player == null)
-                player = other.transform;
+            player = other.transform;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerNearby = false;
-        }
     }
 }
