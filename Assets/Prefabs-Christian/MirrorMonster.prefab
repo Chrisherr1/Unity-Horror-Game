@@ -1834,9 +1834,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAI
   player: {fileID: 0}
+  agent: {fileID: 6822076885677558102}
+  animator: {fileID: 3490026887111630760}
   detectionRange: 5
   losePlayerRange: 10
+  attackRange: 2.5
+  walkSpeed: 2
+  chaseSpeed: 5
+  waypoints: []
+  minIdleTime: 2
+  maxIdleTime: 5
   endChaseDelay: 1.5
+  attackCooldown: 2
 --- !u!195 &6822076885677558102
 NavMeshAgent:
   m_ObjectHideFlags: 0
