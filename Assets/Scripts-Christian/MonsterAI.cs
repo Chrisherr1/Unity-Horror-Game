@@ -115,6 +115,9 @@ public class MonsterAI : MonoBehaviour
     {
         if (isAttacking) return;
 
+        if (HasLineOfSightToPlayer())
+            MusicManager.Instance.StartChase();
+
         if (dist > losePlayerRange)
         {
             ExitChase();
@@ -153,6 +156,15 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
+    bool HasLineOfSightToPlayer()
+    {
+        Vector3 origin = transform.position + Vector3.up;
+        Vector3 target = player.position + Vector3.up;
+        if (Physics.Linecast(origin, target, out RaycastHit hit))
+            return hit.transform == player || hit.transform.IsChildOf(player);
+        return true;
+    }
+
     void EnterChase()
     {
         StopAllCoroutines();
@@ -160,7 +172,8 @@ public class MonsterAI : MonoBehaviour
         state = State.Chasing;
         agent.speed = chaseSpeed;
         PlayAnim(runAnims);
-        MusicManager.Instance.StartChase();
+        if (HasLineOfSightToPlayer())
+            MusicManager.Instance.StartChase();
     }
 
     void ExitChase()
