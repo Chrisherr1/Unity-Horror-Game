@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -28,6 +29,28 @@ public class MusicManager : MonoBehaviour
         ambienceSource.loop = true;
         chaseSource.loop = true;
         ambienceSource.Play();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StopAllCoroutines();
+        chaseSource.Stop();
+        chaseSource.volume = 1f;
+        if (!ambienceSource.isPlaying)
+        {
+            ambienceSource.volume = 1f;
+            ambienceSource.Play();
+        }
     }
 
     public void StartChase()
